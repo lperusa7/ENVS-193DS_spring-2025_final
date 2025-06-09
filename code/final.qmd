@@ -41,8 +41,16 @@ In part 2, my co-worker used a Analysis of Variance (ANOVA) test to be able to a
 
 ## b. More information needed
 
+To better interpret the results of the ANOVA in part 2 we should add two additional pieces of information for context. The first is including the **effect size**, by calculating the Eta squared. The addition of an effect size to the context essentially **quantifies the proportion of variance in nitrogen load** between the different sources. Ultimately, this helps us determine whether the effect is **small, medium, or large**, which adds significance to the results. For example, if we got an Eta squared value of 0.20, this would indicate that **20% of the variability in the response can be explained by the source**. Additionally, we should also include a **post-hoc test**, specifically a **Tukey's HSD**, because the ANOVA only tells us that **at least one group differs**, but not specifically which group(s) are significantly different. A Tukey's HSD compares all possible pairs of group means (e.g. **urban land vs. fertilizer, fertilizer vs. grasslands**). This helps clarify which specific sources differ in nitrogen load, which is essential for the interpretation of the results. For example, the test may reveal that the fertilizer group and wastewater treatment group nitrogen loads are significantly higher than those from the atmospheric deposition and grasslands.
+
 ## c. Suggestions for rewriting
 
+Part 1:
+We found that there is a **small/moderate/strong** association between **distance from headwater (km)** and **annual total nitrogen load (kg year^-1)** (Pearson's r = correlation coefficient, p = 0.03, $\alpha = significance level)
+
+Part 2:
+We found a **small/medium/large** difference (Eta squared = effect size value) between sources (urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands) in average nitrogen load (one-way ANOVA, F(df, df) = test statistic, p = 0.02, $\alpha = significance level)
+On average, average nitrogen loads in **Group A** tended to be **higher/lower** than in **Group B** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1), **Group C** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1), **Group D** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1), and **Group E** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1).
 
 # Problem 2. Data visualization
 
