@@ -27,6 +27,7 @@ library(flextable)
 library(DHARMa)
 library(readxl)
 library(MuMIn)
+library(ggplot2)
 
 # Loading in data
 sst <- read_csv(
@@ -102,6 +103,52 @@ str(sst_clean)
 ```
 
 ## b. Visualize the data
+
+```{r, storing-colors-and-theme}
+# Storing colors to use for each year
+yr2018_col <- "#9ecae1"
+yr2019_col <- "#4292c6"
+yr2020_col <- "#2171b5"
+yr2021_col <- "#04408d"
+yr2022_col <- "#10355b"
+yr2023_col <- "#0a233c"
+
+# Apply consistent clean theme
+theme_set(theme_bw())
+```
+
+
+```{r, recreating visualization}
+ggplot(data = sst_clean,
+       aes(x = month,
+           y = mean_monthly_sst,
+           group = year,
+           color = year)) +
+  geom_line() +
+  geom_point() +
+  scale_color_manual(values = c(
+    "2018" = yr2018_col,
+    "2019" = yr2019_col,
+    "2020" = yr2020_col,
+    "2021" = yr2021_col,
+    "2022" = yr2022_col,
+    "2023" = yr2023_col
+  )) +
+  labs(
+    x = "Month",
+    y = "Mean monthly sea surface temperature (°C)",
+    color = "Year"
+  ) +
+  theme(
+    legend.position = c(0.10, 0.70), # putting legend in the top-left inside panel
+    #legend.justification = c("left", "top"),
+    legend.background = element_rect(fill = "white",
+                                     color = NA), # makes legend readble
+    panel.grid = element_blank(), # removing gridlines
+    legend.title = element_text(color = "black"),
+    legend.text = element_text(color = "black")
+  )
+```
 
 
 # Problem 3. Data analysis
