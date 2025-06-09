@@ -23,7 +23,9 @@ The link to my GitHub repository is
 library(tidyverse)
 library(janitor)
 library(here)
-library(ggeffects)
+library(flextable)
+library(DHARMa)
+library(readxl)
 library(MuMIn)
 
 # Loading in data
@@ -55,6 +57,49 @@ On average, average nitrogen loads in **Group A** tended to be **higher/lower** 
 # Problem 2. Data visualization
 
 ## a. Cleaning and summarizing
+
+```{r, cleaning data}
+# Creating a clean data frame
+sst_clean <- sst |> # starting with sst data frame
+  clean_names() |> # cleaning column names
+  rename(mean_monthly_sst = temp) |> 
+  mutate(
+    date = as.Date(date), # ensures date column is date type
+    month = format(date, "%b"), # extract month (abbreviated)
+    year = format(date, "%Y")) |>  # extract year
+  filter(year %in% c("2018", "2019", "2020", "2021", "2022", "2023") # filtering only years 2018-2023
+  ) |> 
+  mutate(
+    year = factor(year), # convert year to factor
+    month = factor(month, levels = c("Jan", # ordering months correctly from January to Decemeber
+                   "Feb",
+                   "Mar",
+                   "Apr",
+                   "May",
+                   "Jun",
+                   "Jul",
+                   "Aug",
+                   "Sep",
+                   "Oct",
+                   "Nov",
+                   "Dec"),
+                   ordered = TRUE) # convert month to ordered factor
+  ) |> 
+  group_by(year, month) |> 
+  summarise(
+    mean_monthly_sst = mean(mean_monthly_sst, na.rm = TRUE), # calculate the average SST for each month-year pair
+    .groups = "drop") |> # drop grouping after summarizing
+  select(year, month, mean_monthly_sst) # selecting columns
+```
+
+```{r, displaying sample and structure}
+# Display 5 random rows from the cleaned data
+sst_clean |> 
+  slice_sample(n = 5)
+
+# Display structure of the cleaned data
+str(sst_clean)
+```
 
 ## b. Visualize the data
 
