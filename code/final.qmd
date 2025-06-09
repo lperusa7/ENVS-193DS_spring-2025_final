@@ -33,6 +33,10 @@ library(ggplot2)
 sst <- read_csv(
   here("data", "sst.csv") # file path
 )
+
+nestbox_data <- read_csv(
+  here("data", "occdist.csv") # file path
+)
 ```
 
 # Problem 1. Research writing
@@ -59,7 +63,7 @@ On average, average nitrogen loads in **Group A** tended to be **higher/lower** 
 
 ## a. Cleaning and summarizing
 
-```{r, cleaning data}
+```{r, cleaning-data-sst}
 # Creating a clean data frame
 sst_clean <- sst |> # starting with sst data frame
   clean_names() |> # cleaning column names
@@ -93,7 +97,7 @@ sst_clean <- sst |> # starting with sst data frame
   select(year, month, mean_monthly_sst) # selecting columns
 ```
 
-```{r, displaying sample and structure}
+```{r, displaying-sample-and-structure}
 # Display 5 random rows from the cleaned data
 sst_clean |> 
   slice_sample(n = 5)
@@ -118,7 +122,7 @@ theme_set(theme_bw())
 ```
 
 
-```{r, recreating visualization}
+```{r, recreating-visualization}
 ggplot(data = sst_clean,
        aes(x = month,
            y = mean_monthly_sst,
@@ -153,17 +157,72 @@ ggplot(data = sst_clean,
 
 # Problem 3. Data analysis
 
+```{r, cleaning-data-nestbox}
+nestbox_data_clean <- nestbox_data |> 
+  clean_names()
+```
+
+
 ## a. Response variable
+
+The response variable is **Swift Parrot box occupancy**, which is displayed in the data set as a binary variable **"sp"**. A value of 1 in the "sp" column, represents that the nest box was occupied by a Swift Parrot, while a 0 would indicate that the nest box was not occupied by a Swift Parrot, in turn meaning that it is occupied by a Common Starling or a Tree Martin, or it was empty.
 
 ## b. Purpose of study
 
+The Swift Parrot is the **target species** of the study and is **critically endangered**, while the Common Starlings, who were **introduced and abundant** at the study area, and Tree Martins, who are **native**, are competitors that may occupy the nest boxes instead. The Swift Parrot is the **focus of restoration efforts** and their nesting success is vital to the project's goals.
+
 ## c. Difference in “seasons”
+
+The two seasons compared in the study are 2016, which was the year the nest boxes were newly installed, and 2019, which was three years after the nest boxes were installed. Due to the three year gap in "seasons" it allows the author to discover the nest box use changes over time, specifically viewing whether the competitors increasingly occupy the boxes intended for Swift Parrots or not. 
 
 ## d. Table of models
 
+4 models total:
+
+| Model number | Season |  Distance to forest edge | Model Description            | 
+|:------------:|:------:|:------------------------:|------------------------------|  
+| 0            |        |                          | no predictors (null model)   |
+| 1            |    X   |             X            | all predictors (full model)  | 
+| 2            |        |             X            | season only                  |   
+| 3            |        |                          | distance to forest edge only |    
+
 ## e. Run the models
 
+```{r, model-fitting}
+#| echo: true
+results = 'hide'
+# model 0: null model
+model0 <- glm(
+  sp ~ 1, # no predictors
+  data = nestbox_data_clean,
+  family = binomial
+)
+
+# model 1: all predictors
+model1 <- glm(
+  sp ~ season * edge_distance, # full model with interaction
+  data = nestbox_data_clean,
+  family = binomial
+)
+
+# model 2: season only
+model2 <- glm(
+  sp ~ season,
+  data = nestbox_data_clean,
+  family = binomial
+)
+
+# model 3: distance to forest edge only
+model3 <- glm(
+  sp ~ edge_distance,
+  data = nestbox_data_clean,
+  family = binomial
+)
+```
+
 ## f. Check the diagnostics
+
+
 
 ## g. Select the best model
 
