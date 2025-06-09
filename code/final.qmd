@@ -36,6 +36,9 @@ sst <- read_csv(
 
 ## a. Transparent statistical methods
 
+In part 1, my co-worker used a **correlation test**, specifically a **Pearson's correlation**, to test the linear relationship between **distance from headwater** and **annual total nitrogen load**. We know this because of the phrasing "there is no correlation" which indicates that they tested the correlation between these two continuous variables, which knowing the variables are continuous tells us to use a Pearson's r correlation.
+In part 2, my co-worker used a Analysis of Variance (ANOVA) test to be able to asses whether there are any statistically significant differences in the **average nitrogen load** across **multiple sources** (urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands). This is evident because the nature of an ANOVA is that the test compares means across more than two groups, which is suggested by the wording "difference in average nitrogen load between sources". 
+
 ## b. More information needed
 
 ## c. Suggestions for rewriting
