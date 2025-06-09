@@ -28,6 +28,7 @@ library(DHARMa)
 library(readxl)
 library(MuMIn)
 library(ggplot2)
+library(ggeffects)
 
 # Loading in data
 sst <- read_csv(
@@ -159,7 +160,10 @@ ggplot(data = sst_clean,
 
 ```{r, cleaning-data-nestbox}
 nestbox_data_clean <- nestbox_data |> 
-  clean_names()
+  clean_names() |> 
+  mutate(
+    season = factor(season)
+  )
 ```
 
 
@@ -222,13 +226,91 @@ model3 <- glm(
 
 ## f. Check the diagnostics
 
+```{r, model-diagnostics}
+par(mfrow = c(2,2)) # creates a 2x2 grid to display diagnostic plots
+plot(model1) # redisuals look ok for best model
+plot(model2)
+plot(model3)
 
+# Model 1 looks the best
+```
 
 ## g. Select the best model
 
+```{r, model-selection}
+AICc(model1,
+     model2,
+     model3,
+     model0) |> 
+  # arranging output in descending order of AIC
+  arrange(AICc)
+```
+
+The best model, as determined by Akaike’s Information Criterion (AIC), was the model that predicts **Swift Parrot nest box occupancy** includes **season and distance to forest edge as predictors, along with their interaction**. This model had the lowest AIC value, indicating that it best balances model simplicity and fit among the considered models.
+
 ## h. Visualize the model predictions
 
+```{r, model-predictions}
+model1_predictions <- ggpredict(
+  model1,
+  terms = c("edge_distance [all]", "season") # predictors
+) |> 
+  rename(distance_to_edge = x,
+         season = group)
+
+view(model1_predictions)
+```
+
+```{r, model-visualization}
+ggplot(data = nestbox_data_clean,
+       aes(x = edge_distance, # x-axis
+           y = sp, # y-axis
+           color = season)) + # color points by season
+  
+  # Underlying data: jitter to show the binary 0/1 occupancy
+  geom_jitter(width = 0, # no horizontal jitter
+              height = 0.05, # slight vertical jitter to separate overlapping points
+              alpha = 0.4) + # make points semi-transparent
+  
+  # Model predictions layer with a 95% CI
+  geom_line(data = model1_predictions, # use model prediction data
+            aes(x = distance_to_edge, # x from prediction output
+                y = predicted, # predicted occupancy probability
+                color = season), # color lines by season
+            size = 1.2) + # set line thickness
+  geom_ribbon(data = model1_predictions, 
+              aes(x = distance_to_edge,
+                  y = predicted,
+                  ymin = conf.low, # lower CI bound
+                  ymax = conf.high, # upper CI bound
+                  fill = season), # full ribbons by season
+              alpha = 0.2, # semi-transparent fill
+              color = NA) + # no border line around the ribbon
+  
+  # Custom colors (non-default)
+  scale_color_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2")) +
+  scale_fill_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2")) +
+
+  # Axis labels
+  labs(
+    x = "Distance to forest edge (m)", # full x-axis label
+    y = "Probability of Swift Parrot occupancy", # full y-axis label
+    color = "Season", # legend title for line color
+    fill = "Season" # legend title for ribbon fill
+  ) +
+
+  # Removing gridlines and use clean theme
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(), # removing major gridlines
+    panel.grid.minor = element_blank(), # removing minor gridlines
+    legend.position = c(0.90, 0.0) # place legend inside top right
+  )
+```
+
 ## i. Write a caption for your figure.
+
+
 
 ## j. Calculate model predictions
 
