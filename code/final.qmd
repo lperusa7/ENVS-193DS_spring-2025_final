@@ -32,3 +32,49 @@ sst <- read_csv(
 )
 ```
 
+# Problem 1. Research writing
+
+## a. Transparent statistical methods
+
+## b. More information needed
+
+## c. Suggestions for rewriting
+
+
+# Problem 2. Data visualization
+
+## a. Cleaning and summarizing
+
+## b. Visualize the data
+
+
+# Problem 3. Data analysis
+
+## a. Response variable
+
+## b. Purpose of study
+
+## c. Difference in “seasons”
+
+## d. Table of models
+
+## e. Run the models
+
+## f. Check the diagnostics
+
+## g. Select the best model
+
+## h. Visualize the model predictions
+
+## i. Write a caption for your figure.
+
+## j. Calculate model predictions
+
+## k. Interpret your results
+
+
+# Problem 4. Affective and exploratory visualizations
+
+## a. Comparing visualizations
+
+## b. Sharing your affective visualization
