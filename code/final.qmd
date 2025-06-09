@@ -1,0 +1,34 @@
+---
+title: "Final"
+author: "Lukas Lescano"
+date: "06-09-2025"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    toc-floating: true
+execute:
+  message: false
+  warning: false 
+---
+
+The link to my GitHub repository is
+[here](https://github.com/lperusa7/ENVS-193DS_spring-2025_final)
+
+## Setup
+
+```{r, packages and data}
+# Reading in pakages
+library(tidyverse)
+library(janitor)
+library(here)
+library(ggeffects)
+library(MuMIn)
+
+# Loading in data
+sst <- read_csv(
+  here("data", "sst.csv") # file path
+)
+```
+
