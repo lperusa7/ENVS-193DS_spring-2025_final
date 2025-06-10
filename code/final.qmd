@@ -11,6 +11,9 @@ format:
 execute:
   message: false
   warning: false 
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 The link to my GitHub repository is
@@ -44,21 +47,60 @@ nestbox_data <- read_csv(
 
 ## a. Transparent statistical methods
 
-In part 1, my co-worker used a **correlation test**, specifically a **Pearson's correlation**, to test the linear relationship between **distance from headwater** and **annual total nitrogen load**. We know this because of the phrasing "there is no correlation" which indicates that they tested the correlation between these two continuous variables, which knowing the variables are continuous tells us to use a Pearson's r correlation.
-In part 2, my co-worker used a Analysis of Variance (ANOVA) test to be able to asses whether there are any statistically significant differences in the **average nitrogen load** across **multiple sources** (urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands). This is evident because the nature of an ANOVA is that the test compares means across more than two groups, which is suggested by the wording "difference in average nitrogen load between sources". 
+In part 1, my co-worker used a **correlation test**, specifically a
+**Pearson's correlation**, to test the linear relationship between
+**distance from headwater** and **annual total nitrogen load**. We know
+this because of the phrasing "there is no correlation" which indicates
+that they tested the correlation between these two continuous variables,
+which knowing the variables are continuous tells us to use a Pearson's r
+correlation. In part 2, my co-worker used a Analysis of Variance (ANOVA)
+test to be able to asses whether there are any statistically significant
+differences in the **average nitrogen load** across **multiple sources**
+(urban land, atmospheric deposition, fertilizer, wastewater treatment,
+and grasslands). This is evident because the nature of an ANOVA is that
+the test compares means across more than two groups, which is suggested
+by the wording "difference in average nitrogen load between sources".
 
 ## b. More information needed
 
-To better interpret the results of the ANOVA in part 2 we should add two additional pieces of information for context. The first is including the **effect size**, by calculating the Eta squared. The addition of an effect size to the context essentially **quantifies the proportion of variance in nitrogen load** between the different sources. Ultimately, this helps us determine whether the effect is **small, medium, or large**, which adds significance to the results. For example, if we got an Eta squared value of 0.20, this would indicate that **20% of the variability in the response can be explained by the source**. Additionally, we should also include a **post-hoc test**, specifically a **Tukey's HSD**, because the ANOVA only tells us that **at least one group differs**, but not specifically which group(s) are significantly different. A Tukey's HSD compares all possible pairs of group means (e.g. **urban land vs. fertilizer, fertilizer vs. grasslands**). This helps clarify which specific sources differ in nitrogen load, which is essential for the interpretation of the results. For example, the test may reveal that the fertilizer group and wastewater treatment group nitrogen loads are significantly higher than those from the atmospheric deposition and grasslands.
+To better interpret the results of the ANOVA in part 2 we should add two
+additional pieces of information for context. The first is including the
+**effect size**, by calculating the Eta squared. The addition of an
+effect size to the context essentially **quantifies the proportion of
+variance in nitrogen load** between the different sources. Ultimately,
+this helps us determine whether the effect is **small, medium, or
+large**, which adds significance to the results. For example, if we got
+an Eta squared value of 0.20, this would indicate that **20% of the
+variability in the response can be explained by the source**.
+Additionally, we should also include a **post-hoc test**, specifically a
+**Tukey's HSD**, because the ANOVA only tells us that **at least one
+group differs**, but not specifically which group(s) are significantly
+different. A Tukey's HSD compares all possible pairs of group means
+(e.g. **urban land vs. fertilizer, fertilizer vs. grasslands**). This
+helps clarify which specific sources differ in nitrogen load, which is
+essential for the interpretation of the results. For example, the test
+may reveal that the fertilizer group and wastewater treatment group
+nitrogen loads are significantly higher than those from the atmospheric
+deposition and grasslands.
 
 ## c. Suggestions for rewriting
 
-Part 1:
-We found that there is a **small/moderate/strong** association between **distance from headwater (km)** and **annual total nitrogen load (kg year^-1)** (Pearson's r = correlation coefficient, p = 0.03, $\alpha = significance level)
+Part 1: We found that there is a **small/moderate/strong** association
+between **distance from headwater (km)** and **annual total nitrogen
+load (kg year\^-1)** (Pearson's r = correlation coefficient, p = 0.03,
+\$\alpha = significance level)
 
-Part 2:
-We found a **small/medium/large** difference (Eta squared = effect size value) between sources (urban land, atmospheric deposition, fertilizer, wastewater treatment, and grasslands) in average nitrogen load (one-way ANOVA, F(df, df) = test statistic, p = 0.02, $\alpha = significance level)
-On average, average nitrogen loads in **Group A** tended to be **higher/lower** than in **Group B** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1), **Group C** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1), **Group D** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1), and **Group E** (how much higher or lower from Tukey's HSD, 95% CI [range] kg year^-1).
+Part 2: We found a **small/medium/large** difference (Eta squared =
+effect size value) between sources (urban land, atmospheric deposition,
+fertilizer, wastewater treatment, and grasslands) in average nitrogen
+load (one-way ANOVA, F(df, df) = test statistic, p = 0.02, \$\alpha =
+significance level) On average, average nitrogen loads in **Group A**
+tended to be **higher/lower** than in **Group B** (how much higher or
+lower from Tukey's HSD, 95% CI \[range\] kg year\^-1), **Group C** (how
+much higher or lower from Tukey's HSD, 95% CI \[range\] kg year\^-1),
+**Group D** (how much higher or lower from Tukey's HSD, 95% CI \[range\]
+kg year\^-1), and **Group E** (how much higher or lower from Tukey's
+HSD, 95% CI \[range\] kg year\^-1).
 
 # Problem 2. Data visualization
 
@@ -122,7 +164,6 @@ yr2023_col <- "#0a233c"
 theme_set(theme_bw())
 ```
 
-
 ```{r, recreating-visualization}
 ggplot(data = sst_clean,
        aes(x = month,
@@ -155,7 +196,6 @@ ggplot(data = sst_clean,
   )
 ```
 
-
 # Problem 3. Data analysis
 
 ```{r, cleaning-data-nestbox}
@@ -166,29 +206,43 @@ nestbox_data_clean <- nestbox_data |>
   )
 ```
 
-
 ## a. Response variable
 
-The response variable is **Swift Parrot box occupancy**, which is displayed in the data set as a binary variable **"sp"**. A value of 1 in the "sp" column, represents that the nest box was occupied by a Swift Parrot, while a 0 would indicate that the nest box was not occupied by a Swift Parrot, in turn meaning that it is occupied by a Common Starling or a Tree Martin, or it was empty.
+The response variable is **Swift Parrot box occupancy**, which is
+displayed in the data set as a binary variable **"sp"**. A value of 1 in
+the "sp" column, represents that the nest box was occupied by a Swift
+Parrot, while a 0 would indicate that the nest box was not occupied by a
+Swift Parrot, in turn meaning that it is occupied by a Common Starling
+or a Tree Martin, or it was empty.
 
 ## b. Purpose of study
 
-The Swift Parrot is the **target species** of the study and is **critically endangered**, while the Common Starlings, who were **introduced and abundant** at the study area, and Tree Martins, who are **native**, are competitors that may occupy the nest boxes instead. The Swift Parrot is the **focus of restoration efforts** and their nesting success is vital to the project's goals.
+The Swift Parrot is the **target species** of the study and is
+**critically endangered**, while the Common Starlings, who were
+**introduced and abundant** at the study area, and Tree Martins, who are
+**native**, are competitors that may occupy the nest boxes instead. The
+Swift Parrot is the **focus of restoration efforts** and their nesting
+success is vital to the project's goals.
 
 ## c. Difference in “seasons”
 
-The two seasons compared in the study are 2016, which was the year the nest boxes were newly installed, and 2019, which was three years after the nest boxes were installed. Due to the three year gap in "seasons" it allows the author to discover the nest box use changes over time, specifically viewing whether the competitors increasingly occupy the boxes intended for Swift Parrots or not. 
+The two seasons compared in the study are 2016, which was the year the
+nest boxes were newly installed, and 2019, which was three years after
+the nest boxes were installed. Due to the three year gap in "seasons" it
+allows the author to discover the nest box use changes over time,
+specifically viewing whether the competitors increasingly occupy the
+boxes intended for Swift Parrots or not.
 
 ## d. Table of models
 
 4 models total:
 
-| Model number | Season |  Distance to forest edge | Model Description            | 
-|:------------:|:------:|:------------------------:|------------------------------|  
-| 0            |        |                          | no predictors (null model)   |
-| 1            |    X   |             X            | all predictors (full model)  | 
-| 2            |        |             X            | season only                  |   
-| 3            |        |                          | distance to forest edge only |    
+| Model number | Season | Distance to forest edge | Model Description            |
+|:-------------:|:-------------:|:------------------:|------------------------|
+|      0       |        |                         | no predictors (null model)   |
+|      1       |   X    |            X            | all predictors (full model)  |
+|      2       |        |            X            | season only                  |
+|      3       |        |                         | distance to forest edge only |
 
 ## e. Run the models
 
@@ -258,7 +312,11 @@ AICc(model1,
   arrange(AICc)
 ```
 
-The best model, as determined by Akaike’s Information Criterion (AIC), was the model that predicts **Swift Parrot nest box occupancy** includes **season and distance to forest edge as predictors, along with their interaction**. This model had the lowest AIC value, indicating that it best balances model simplicity and fit among the considered models.
+The best model, as determined by Akaike’s Information Criterion (AIC),
+was the model that predicts **Swift Parrot nest box occupancy** includes
+**season and distance to forest edge as predictors, along with their
+interaction**. This model had the lowest AIC value, indicating that it
+best balances model simplicity and fit among the considered models.
 
 ## h. Visualize the model predictions
 
@@ -323,11 +381,14 @@ ggplot(data = nestbox_data_clean,
 
 ## i. Write a caption for your figure.
 
-**Figure 1. Swift Parrot Nest Box Occupancy Decreases with Distance from Forest Edge and Differs between Seasons**
-Data from Stojanovic et al. (2020).
-Points represent the observations of Swift Parrot (*Lathamus discolor*) nest box occupancy (0 = unoccupied, 1 = occupied) and distance to forest edge (m) in different seasons (total n = 227).
-Lines show the model-predicted occupancy probabilities based on a binomial GLM with 95% confidence intervals.
-Colors represent season (orange: 2016, blue: 2019).
+**Figure 1. Swift Parrot Nest Box Occupancy Decreases with Distance from
+Forest Edge and Differs between Seasons** Data from Stojanovic et al.
+(2020). Points represent the observations of Swift Parrot (*Lathamus
+discolor*) nest box occupancy (0 = unoccupied, 1 = occupied) and
+distance to forest edge (m) in different seasons (total n = 227). Lines
+show the model-predicted occupancy probabilities based on a binomial GLM
+with 95% confidence intervals. Colors represent season (orange: 2016,
+blue: 2019).
 
 ## j. Calculate model predictions
 
@@ -344,26 +405,106 @@ model1_prediction_0_and_900
 
 ## k. Interpret your results
 
-At the edge of the forest (0 m), the predicted probability of Swift Parrot nest box occupancy was **higher in 2016 than in 2019**, suggesting that the occupancy of the nest box was initially strong. However, at 900 m from the edge of the forest, the occupancy probabilities were **low in both seasons**, with a slightly larger model uncertainty for 2019; overall, this indicates that the distance from the edge of the forest **negatively influences** Swift Parrot occupancy.
-The model and figure display a **decreasing trend** in Swift Parrot occupancy with **increasing the distance from the edge of the forest**, which is consistent across both seasons, although the decline appears to be steeper in 2016.
-Biologically, the trends likely reflect the Swift Parrot's **natural nesting preferences**, which is that they're edge-adapted cavity nesters, so their probability of occupying a nest box is **highest at the edge of the forest**. In the paper, we see that Common Starlings increasingly dominated the nest boxes closest to the forest edge over time, indicating that they outcompeted the other birds for these prime sites. Over time, we see that Tree Martins have learned to exploit interior boxes, further reducing the availability of suitable nesting sites for parrots in more more interior locations.
+At the edge of the forest (0 m), the predicted probability of Swift
+Parrot nest box occupancy was **higher in 2016 than in 2019**,
+suggesting that the occupancy of the nest box was initially strong.
+However, at 900 m from the edge of the forest, the occupancy
+probabilities were **low in both seasons**, with a slightly larger model
+uncertainty for 2019; overall, this indicates that the distance from the
+edge of the forest **negatively influences** Swift Parrot occupancy. The
+model and figure display a **decreasing trend** in Swift Parrot
+occupancy with **increasing the distance from the edge of the forest**,
+which is consistent across both seasons, although the decline appears to
+be steeper in 2016. Biologically, the trends likely reflect the Swift
+Parrot's **natural nesting preferences**, which is that they're
+edge-adapted cavity nesters, so their probability of occupying a nest
+box is **highest at the edge of the forest**. In the paper, we see that
+Common Starlings increasingly dominated the nest boxes closest to the
+forest edge over time, indicating that they outcompeted the other birds
+for these prime sites. Over time, we see that Tree Martins have learned
+to exploit interior boxes, further reducing the availability of suitable
+nesting sites for parrots in more more interior locations.
 
 # Problem 4. Affective and exploratory visualizations
 
 ## a. Comparing visualizations
 
-My visualizations are vastly different from each other in regards to the way the data is represented. In my homework 2 exploratory visualization, I made a boxplot showing the mean productivity rates between two music genres, Classical and Lofi. For my affective visualization in homework 3, I displayed all four of the music genres I explored in my personal data collection, and I 
-displayed each music genres productivity rate by making more soundwaves. Ultimately, the two visualizations are incredible different and the main difference is that in the exploratory visualization, the mean productivity rates are listed based on the top of the boxplots and the y-axis labels including numbers, where as for the affective visualization there are no numbers and rather it just visually shows which ones had a higher productivity rate through the size and amount of waves in the soundwave.
+My visualizations are vastly different from each other in regards to the
+way the data is represented. In my homework 2 exploratory visualization,
+I made a boxplot showing the mean productivity rates between two music
+genres, Classical and Lofi. For my affective visualization in homework
+3, I displayed all four of the music genres I explored in my personal
+data collection, and I displayed each music genres productivity rate by
+making more soundwaves. Ultimately, the two visualizations are
+incredible different and the main difference is that in the exploratory
+visualization, the mean productivity rates are listed based on the top
+of the boxplots and the y-axis labels including numbers, where as for
+the affective visualization there are no numbers and rather it just
+visually shows which ones had a higher productivity rate through the
+size and amount of waves in the soundwave.
 
-There are very few similarities between the two visualizations and I would say that is because they are two different types of visualizations but it is most likely because for my exploratory visualization I only had a few observations at the time of making it.
+There are very few similarities between the two visualizations and I
+would say that is because they are two different types of visualizations
+but it is most likely because for my exploratory visualization I only
+had a few observations at the time of making it.
 
-The patterns are different between the visualizations. In the exploratory boxplot, the mean productivity rates are very similar between classical and lofi music genres; No Music and Indie Rock were excluded. In the affective visualization, we see a similar pattern in the mean productivity between classical and lofi, but we now see that No Music also has a high productivity rate.
+The patterns are different between the visualizations. In the
+exploratory boxplot, the mean productivity rates are very similar
+between classical and lofi music genres; No Music and Indie Rock were
+excluded. In the affective visualization, we see a similar pattern in
+the mean productivity between classical and lofi, but we now see that No
+Music also has a high productivity rate.
 
-The feedback I got was to make it more visually obvious of which genres had the most productivity and which didn't by making the difference between each soundwave more drastic. I was also told that it might be better to order them from top to bottom, the top being the genre with the highest mean productivity and the bottom being the one with the lowest. I took both of these critiques into consideration and incorporated them in the final draft.
+The feedback I got was to make it more visually obvious of which genres
+had the most productivity and which didn't by making the difference
+between each soundwave more drastic. I was also told that it might be
+better to order them from top to bottom, the top being the genre with
+the highest mean productivity and the bottom being the one with the
+lowest. I took both of these critiques into consideration and
+incorporated them in the final draft.
 
 ## b. Sharing your affective visualization
 
 My Final Draft Affective Visualization:
-![](media/final_draft_affective_visualization)
+![](../images/final_draft_affective_visualization.jpg)
+Questions for the Affective Visualization Final Presentation
+  1. Read the artist statement carefully and make notes on it here. What connections can you make between what your classmate communicated about their intention and the final piece you see?
+  2. What stands out to you about the work (e.g. color, forms, medium)? Why do you think that is so striking?
+  3. How are the data represented? Is it easy or difficult to see the underlying data? Why?
+  4. What do you like about this work? Explain why.
+  
+# Critique #1: Tanveer Singh
+![](../images/tanveer_AV.jpeg)
 
-Critique #1: 
+1. After reading the artist statement, there were many connections that Tanveer made in his artist statement that directly translated over to the final piece. He was careful to describe each component of the visualization, breaking down what the width and height represented as well as explaining what the colors meant. He also ended his statement 
+
+2. The shapes of the books is what stands out to me the most when initially looking at the visualization. I think it stands out so much because no one book looks like the other, so it made me question what it represented and after reading the artist statement I understood it.
+
+3. The data is represented by the width, height, and color of the books. The width represents the time spent reading. The height represents number of books read. The color represents the comprehension rate between 1 to 3. There are two separate bookshelves which represent two different groups, in this case being Bedroom and Balcony. It is somewhat difficult to see the underlying data but Tanveer did a great job of including many of the underlying data creatively into his visualization.
+
+4. I really like the creative nature of the visualization, by making a bookshelf full of books and manipulating the width, height, and color of the books to ultimately tell a story on your data. I also really liked the plant added to add more to the visualization. 
+
+# Critique #2: Nathan Seaway
+![](../images/nathan_AV.jpeg)
+
+1. Artist statement include explanation of different metric and geometries used for the visualization. The artist statement communicated the thought process effectively. The purpose and overarching message from the artist statement is consistent with visualization.
+
+2. The part that stands out the most about the work is the different colors used and specifically the blue suns, which represent the mean value from the data. I would say that the blue sun drawing was very striking because it is relatively large compared to the rest of the geometries and it is the shape that has the most going on with it so it naturally pops.
+
+3. The data is represented by blue suns, blue lines, purple dots, and yellow dots. The blue sun represents the mean of the data. The blue line represents the standard deviations of the data. The purple dots represent the outlier data points. The yellow dots represent actual data points. It is somewhat difficult to see the underlying data because we can only compare each sunscreen bottle to each other to get an understanding of the general trend of the data.
+
+4. Overall, I love how creative this piece was and as simple as it is, it speaks levels. I also really liked how they included a legened on the side 
+# Critique #3: Ellie Schomberg
+![](../images/ellie_AV.jpeg)
+
+1. The artist statement explained that she aimed to see how five different categories of swimming workouts affected the average amount of sleep she got. There were a lot of connections between the artist statement and the affective visualization. The first connection was the placement of the swimmers and the five different lanes and what each of them meant.
+
+2. I think that the different lanes and the blue water were the things that stood out the most. When looking further, I did notice the difference in the placement of the swimmers. I think the contrast of the colors is why the lanes were specifically striking.
+
+3. The data is represented by the five different lanes, the swimmers, and blue bubbles. The five different lanes represent the different swimming workouts she analyzed. The swimmer were representing the mean hours of sleep in each category. The blue bubbles represented individual observations of sleep after each workout. The underlying data is easily seen in the visualization because she included the bubble points.
+
+4. I really enjoyed the top down view of the pool and how Ellie creatively utilized different components of a pool to manipulate to tell a story about the data she collected and her findings.
+
+# Critique #4: Zekai Wanger
+
+1. 
