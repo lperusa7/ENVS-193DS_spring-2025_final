@@ -199,28 +199,28 @@ results = 'hide'
 model0 <- glm(
   sp ~ 1, # no predictors
   data = nestbox_data_clean,
-  family = binomial
+  family = "binomial"
 )
 
 # model 1: all predictors
 model1 <- glm(
   sp ~ season * edge_distance, # full model with interaction
   data = nestbox_data_clean,
-  family = binomial
+  family = "binomial"
 )
 
 # model 2: season only
 model2 <- glm(
   sp ~ season,
   data = nestbox_data_clean,
-  family = binomial
+  family = "binomial"
 )
 
 # model 3: distance to forest edge only
 model3 <- glm(
   sp ~ edge_distance,
   data = nestbox_data_clean,
-  family = binomial
+  family = "binomial"
 )
 ```
 
@@ -228,10 +228,22 @@ model3 <- glm(
 
 ```{r, model-diagnostics}
 par(mfrow = c(2,2)) # creates a 2x2 grid to display diagnostic plots
-plot(model1) # redisuals look ok for best model
-plot(model2)
-plot(model3)
-
+# Model 0
+plot(
+  sim0 <- simulateResiduals(model0)
+)
+# Model 1
+plot(
+  sim1 <- simulateResiduals(model1) # redisuals look ok for best model
+)
+# Model 2
+plot(
+  sim2 <- simulateResiduals(model2)
+)
+# Model 3
+plot(
+  sim3 <- simulateResiduals(model3)
+)
 # Model 1 looks the best
 ```
 
@@ -296,7 +308,8 @@ ggplot(data = nestbox_data_clean,
     x = "Distance to forest edge (m)", # full x-axis label
     y = "Probability of Swift Parrot occupancy", # full y-axis label
     color = "Season", # legend title for line color
-    fill = "Season" # legend title for ribbon fill
+    fill = "Season", # legend title for ribbon fill
+    title = "Nest Box Occupancy Probability Varies by Year and Distance to Forest Edge" 
   ) +
 
   # Removing gridlines and use clean theme
@@ -304,18 +317,36 @@ ggplot(data = nestbox_data_clean,
   theme(
     panel.grid.major = element_blank(), # removing major gridlines
     panel.grid.minor = element_blank(), # removing minor gridlines
-    legend.position = c(0.90, 0.0) # place legend inside top right
+    legend.position = c(0.90, 0.70) # place legend inside top right
   )
 ```
 
 ## i. Write a caption for your figure.
 
-
+**Figure 1. Swift Parrot Nest Box Occupancy Decreases with Distance from Forest Edge and Differs between Seasons**
+Data from Stojanovic et al. (2020).
+Points represent the observations of Swift Parrot (*Lathamus discolor*) nest box occupancy (0 = unoccupied, 1 = occupied) and distance to forest edge (m) in different seasons (total n = 227).
+Lines show the model-predicted occupancy probabilities based on a binomial GLM with 95% confidence intervals.
+Colors represent season (orange: 2016, blue: 2019).
 
 ## j. Calculate model predictions
 
+```{r, model1-predictions-0-and-900}
+# Generating model prediction for specific distances for each season
+model1_prediction_0_and_900 <- ggpredict(
+  model1,
+  terms = c("edge_distance [0,900]", "season")
+)
+
+# View the output
+model1_prediction_0_and_900
+```
+
 ## k. Interpret your results
 
+At the edge of the forest (0 m), the predicted probability of Swift Parrot nest box occupancy was **higher in 2016 than in 2019**, suggesting that the occupancy of the nest box was initially strong. However, at 900 m from the edge of the forest, the occupancy probabilities were **low in both seasons**, with a slightly larger model uncertainty for 2019; overall, this indicates that the distance from the edge of the forest **negatively influences** Swift Parrot occupancy.
+The model and figure display a **decreasing trend** in Swift Parrot occupancy with **increasing the distance from the edge of the forest**, which is consistent across both seasons, although the decline appears to be steeper in 2016.
+Biologically, the trends likely reflect the Swift Parrot's **natural nesting preferences**, which is that they're edge-adapted cavity nesters, so their probability of occupying a nest box is **highest at the edge of the forest**. In the paper, we see that Common Starlings increasingly dominated the nest boxes closest to the forest edge over time, indicating that they outcompeted the other birds for these prime sites. Over time, we see that Tree Martins have learned to exploit interior boxes, further reducing the availability of suitable nesting sites for parrots in more more interior locations.
 
 # Problem 4. Affective and exploratory visualizations
 
