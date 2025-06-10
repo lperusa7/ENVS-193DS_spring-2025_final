@@ -17,7 +17,7 @@ This repository is for my Final for my Env S 193DS class. In this assignment, we
 - `ellie_AV.jpeg`: Ellie's affective visualization for critique in Problem 4
 - `final_draft_visualization.jpg`: My ffective visualization for critique in Problem 4
 - `nathan_AV.jpeg`: Nathan's affective visualization for critique in Problem 4
-- `tanveer_AV.jpeg: Tanveer's affective visualization for critique in Problem 4
+- `tanveer_AV.jpeg`: Tanveer's affective visualization for critique in Problem 4
 
 ## Rendered Output
 
