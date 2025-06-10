@@ -352,4 +352,18 @@ Biologically, the trends likely reflect the Swift Parrot's **natural nesting pre
 
 ## a. Comparing visualizations
 
+My visualizations are vastly different from each other in regards to the way the data is represented. In my homework 2 exploratory visualization, I made a boxplot showing the mean productivity rates between two music genres, Classical and Lofi. For my affective visualization in homework 3, I displayed all four of the music genres I explored in my personal data collection, and I 
+displayed each music genres productivity rate by making more soundwaves. Ultimately, the two visualizations are incredible different and the main difference is that in the exploratory visualization, the mean productivity rates are listed based on the top of the boxplots and the y-axis labels including numbers, where as for the affective visualization there are no numbers and rather it just visually shows which ones had a higher productivity rate through the size and amount of waves in the soundwave.
+
+There are very few similarities between the two visualizations and I would say that is because they are two different types of visualizations but it is most likely because for my exploratory visualization I only had a few observations at the time of making it.
+
+The patterns are different between the visualizations. In the exploratory boxplot, the mean productivity rates are very similar between classical and lofi music genres; No Music and Indie Rock were excluded. In the affective visualization, we see a similar pattern in the mean productivity between classical and lofi, but we now see that No Music also has a high productivity rate.
+
+The feedback I got was to make it more visually obvious of which genres had the most productivity and which didn't by making the difference between each soundwave more drastic. I was also told that it might be better to order them from top to bottom, the top being the genre with the highest mean productivity and the bottom being the one with the lowest. I took both of these critiques into consideration and incorporated them in the final draft.
+
 ## b. Sharing your affective visualization
+
+My Final Draft Affective Visualization:
+![](media/final_draft_affective_visualization)
+
+Critique #1: 
