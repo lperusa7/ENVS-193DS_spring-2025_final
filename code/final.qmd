@@ -467,11 +467,11 @@ incorporated them in the final draft.
 
 My Final Draft Affective Visualization:
 ![](../images/final_draft_affective_visualization.jpg)
-Questions for the Affective Visualization Final Presentation
-  1. Read the artist statement carefully and make notes on it here. What connections can you make between what your classmate communicated about their intention and the final piece you see?
-  2. What stands out to you about the work (e.g. color, forms, medium)? Why do you think that is so striking?
-  3. How are the data represented? Is it easy or difficult to see the underlying data? Why?
-  4. What do you like about this work? Explain why.
+# Questions for the Affective Visualization Final Presentation
+- 1. Read the artist statement carefully and make notes on it here. What connections can you make between what your classmate communicated about their intention and the final piece you see?
+- 2. What stands out to you about the work (e.g. color, forms, medium)? Why do you think that is so striking?
+- 3. How are the data represented? Is it easy or difficult to see the underlying data? Why?
+- 4. What do you like about this work? Explain why.
   
 # Critique #1: Tanveer Singh
 ![](../images/tanveer_AV.jpeg)
@@ -506,5 +506,12 @@ Questions for the Affective Visualization Final Presentation
 4. I really enjoyed the top down view of the pool and how Ellie creatively utilized different components of a pool to manipulate to tell a story about the data she collected and her findings.
 
 # Critique #4: Zekai Wanger
+![](../images/zekai_AV.jpg)
 
-1. 
+1. The artists statement explains how Zekai used triangles to display each individual observation. I think that the intention compared to the actual visualization is connected very well.
+
+2. Since there are no colors and its all grey, I would say that the triangles were the things that stood out the most. I think the part that was the most striking about it was how the legend above defined the triangles.
+
+3. The data is represented by the shape of the triangle. The width of the triangle represents the calories burned per day. The height of the triangle represents the amount of sleep. The bar above the triangle represents if he went on a run or not. Overall, the underlying data is easy to see since he included a well defined legend and because he used a creative way to represent multiple sides of his data.
+
+4. I really like the creative aspect of his work. When I saw this example on the Dear Data project I found it hard to apply to my personal data collection project but nonetheless I thought it was a very interesting and cool way to represent the data. I would maybe say that if he used colors it could give him the ability to include more of the underlying data by adding other metrics.
