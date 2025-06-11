@@ -165,14 +165,14 @@ theme_set(theme_bw())
 ```
 
 ```{r, recreating-visualization}
-ggplot(data = sst_clean,
-       aes(x = month,
-           y = mean_monthly_sst,
-           group = year,
-           color = year)) +
-  geom_line() +
-  geom_point() +
-  scale_color_manual(values = c(
+ggplot(data = sst_clean, # data frame
+       aes(x = month, # x-axis
+           y = mean_monthly_sst, # y-axis
+           group = year, # group data by year
+           color = year)) + # map year to the color aesthetic
+  geom_line() + # add lines
+  geom_point() + # add points
+  scale_color_manual(values = c( # assign colors for each year
     "2018" = yr2018_col,
     "2019" = yr2019_col,
     "2020" = yr2020_col,
@@ -181,18 +181,18 @@ ggplot(data = sst_clean,
     "2023" = yr2023_col
   )) +
   labs(
-    x = "Month",
-    y = "Mean monthly sea surface temperature (°C)",
-    color = "Year"
+    x = "Month", # label x-axis
+    y = "Mean monthly sea surface temperature (°C)", # label y-axis
+    color = "Year" # labeling legend
   ) +
   theme(
     legend.position = c(0.10, 0.70), # putting legend in the top-left inside panel
     #legend.justification = c("left", "top"),
     legend.background = element_rect(fill = "white",
-                                     color = NA), # makes legend readble
+                                     color = NA), # makes legend readable
     panel.grid = element_blank(), # removing gridlines
-    legend.title = element_text(color = "black"),
-    legend.text = element_text(color = "black")
+    legend.title = element_text(color = "black"), # make legend title black
+    legend.text = element_text(color = "black") # make legend text black
   )
 ```
 
@@ -200,9 +200,9 @@ ggplot(data = sst_clean,
 
 ```{r, cleaning-data-nestbox}
 nestbox_data_clean <- nestbox_data |> 
-  clean_names() |> 
-  mutate(
-    season = factor(season)
+  clean_names() |> # cleaning column names
+  mutate( 
+    season = factor(season) # reading in seasons as a factor
   )
 ```
 
@@ -322,12 +322,15 @@ best balances model simplicity and fit among the considered models.
 
 ```{r, model-predictions}
 model1_predictions <- ggpredict(
-  model1,
-  terms = c("edge_distance [all]", "season") # predictors
+  model1, # the model I chose
+  terms = c("edge_distance [all]", "season") # specify which predictors to use for predictions
+  # "edge_distance [all]" means predictions will be generated across all values of edge_distance
+  # "season" is treated as a grouping factor (separate lines/predictions per season)
 ) |> 
-  rename(distance_to_edge = x,
-         season = group)
+  rename(distance_to_edge = x, # rename the 'x' column for clarity
+         season = group) # rename the 'group' column
 
+# view the resulting predictions data frame
 view(model1_predictions)
 ```
 
@@ -396,8 +399,9 @@ blue: 2019).
 ```{r, model1-predictions-0-and-900}
 # Generating model prediction for specific distances for each season
 model1_prediction_0_and_900 <- ggpredict(
-  model1,
-  terms = c("edge_distance [0,900]", "season")
+  model1, # model I chose 
+  terms = c("edge_distance [0,900]", # generate predictions at edge distances of 0 and 900
+            "season") # group the predictions by 'season'
 )
 
 # View the output
